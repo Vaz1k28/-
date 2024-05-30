@@ -1,19 +1,20 @@
-def count_word(a, b):
-    with open(a, 'r') as file:
-        text = file.read()
-
-    words = text.split()
+def count_occurrences(sentence):
+    words = sentence.split()
     word_count = {}
     result = []
 
     for word in words:
-        if word in word_count:
-            result.append(word_count[word])
-            word_count[word] += 1
-        else:
-            result.append(0)
-            word_count[word] = 1
+        if word not in word_count:
+            word_count[word] = 0
+        result.append(str(word_count[word]))
+        word_count[word] += 1
 
-    with open(b, 'w') as file:
-        file.write(' '.join(map(str, result)))
+    return ' '.join(result)
 
+input_data = [
+    "one two one two three",
+    "She sells sea shells on the sea shore; The shells that she sells are sea shells I'm sure. So if she sells sea shells on the sea shore, I'm sure that the shells are sea shore shells."
+]
+
+for data in input_data:
+    print(count_occurrences(data))
